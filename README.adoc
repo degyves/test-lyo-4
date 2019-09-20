@@ -1,0 +1,27 @@
+= README
+
+jenv shell 9.0.1
+jenv shell 1.8.0.221
+
+Run jshell
+
+mvn com.github.johnpoth:jshell-maven-plugin:1.0:run
+
+Run groovy
+
+mvn groovy:shell
+
+== Test lyo 4
+
+
+Follow-up this example at `lyo-samples` of https://github.com/OSLC/lyo-samples/
+file /Users/admin/java/lyo-samples/oslc4j-client-samples/src/main/java/org/eclipse/lyo/oslc4j/client/samples/ERMSample.java
+
+----
+/open startup.jshell
+----
+
+Then edit the file:
+
+commands.jshell
+

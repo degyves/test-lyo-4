@@ -1,0 +1,33 @@
+JEEFormAuthenticator jeeClient = new JEEFormAuthenticator( rmUri, user, pass );
+
+clientBuilder.register( jeeClient );
+
+OslcClient oslcClient = new OslcClient( clientBuilder );
+
+//STEP 4: Get the URL of the OSLC RM service from the rootservices document
+String catalogUrl = oslcClient.getCatalogUrl( rmUri, OSLCConstants.OSLC_RM_V2 );
+
+String projectArea = "JKE Banking (Requirements Management)"
+//STEP 5: Find the OSLC Service Provider for the project area we want to work with
+String serviceProviderUrl = oslcClient.lookupServiceProviderUrl( catalogUrl, projectArea);
+
+//STEP 6: Get the Query Capabilities URL so that we can run some OSLC queries
+String queryCapability = oslcClient.lookupQueryCapability(serviceProviderUrl,
+            OSLCConstants.OSLC_RM_V2,
+            OSLCConstants.RM_REQUIREMENT_TYPE);
+
+//STEP 7: Create base requirements
+//Get the Creation Factory URL for change requests so that we can create one
+String requirementFactory = oslcClient.lookupCreationFactory(
+    serviceProviderUrl, OSLCConstants.OSLC_RM_V2,
+    OSLCConstants.RM_REQUIREMENT_TYPE);
+
+//Get Feature Requirement Type URL (Artifact Type "Feature")
+ResourceShape featureInstanceShape = RmUtil.lookupRequirementsInstanceShapes(
+    serviceProviderUrl, OSLCConstants.OSLC_RM_V2,
+    OSLCConstants.RM_REQUIREMENT_TYPE, oslcClient, "Feature");
+
+Response response = oslcClient.getResource( rmUri+"/rootservices", OSLCConstants.OSLC_RM_V2 );
+
+oslcClient.getClient().close();
+

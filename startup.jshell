@@ -1,0 +1,38 @@
+import org.eclipse.lyo.oslc4j.client.JEEFormAuthenticator ;
+import org.eclipse.lyo.oslc4j.client.OSLCConstants;
+import org.eclipse.lyo.oslc4j.client.OslcClient;
+
+import org.eclipse.lyo.oslc4j.client.resources.RmUtil;
+import org.eclipse.lyo.oslc4j.core.model.ResourceShape;
+
+import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+import org.glassfish.jersey.client.ClientConfig;
+import javax.ws.rs.client.ClientBuilder;
+
+import org.apache.http.ssl.SSLContexts;
+import org.apache.http.ssl.SSLContextBuilder;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
+
+import javax.ws.rs.core.Response;
+
+String clmUri = "https://parro.dynalias.com:9443/";
+String rmUri = clmUri + "rm";
+String jtsUri = clmUri + "jts";
+String user = "vdegyves";
+String pass = "vdegyves";
+
+// STEP 1: Configure the ClientBuilder as needed for your client application
+// Use HttpClient instead of the default HttpUrlConnection
+ClientConfig clientConfig = new ClientConfig().connectorProvider(new ApacheConnectorProvider());
+ClientBuilder clientBuilder = ClientBuilder.newBuilder();
+clientBuilder.readTimeout( 30, Timeout.SECONDS );
+clientBuilder.connectTimeout( 10, Timeout.SECONDS );
+clientBuilder.withConfig( clientConfig );
+
+// Setup SSL support to ignore self-assigned SSL certificates
+SSLContextBuilder sslContextBuilder = new SSLContextBuilder();
+sslContextBuilder.loadTrustMaterial( TrustSelfSignedStrategy.INSTANCE );
+clientBuilder.sslContext( sslContextBuilder.build() );
+clientBuilder.hostnameVerifier( NoopHostnameVerifier.INSTANCE );
+

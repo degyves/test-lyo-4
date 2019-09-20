@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation=
+  "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.degyves.testlyo4</groupId>
+    <artifactId>testly4-jshell</artifactId>
+    <version>1.1</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.jar.plugin.version>3.0.2</maven.jar.plugin.version>
+        <jacoco.maven.plugin.version>0.8.0</jacoco.maven.plugin.version>
+        <junit.version>4.12</junit.version>
+        <assertj.version>3.9.0</assertj.version>
+        <mockito.version>2.13.0</mockito.version>
+        <maven.test.failure.ignore>true</maven.test.failure.ignore>
+        <maven.deploy.skip>true</maven.deploy.skip>
+        <eclipse.lyo.version>4.0.0-SNAPSHOT</eclipse.lyo.version>
+    </properties>
+
+
+    <build>
+        <plugins>
+
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-project-info-reports-plugin</artifactId>
+            <version>2.2</version>
+         </plugin>
+
+
+      </plugins>
+    </build>
+
+    <dependencies>
+
+       <!-- dependency>
+        <groupId>org.eclipse.lyo.clients</groupId>
+        <artifactId>oslc-java-client</artifactId>
+        <version>${eclipse.lyo.version}</version>
+       </dependency -->
+
+       <dependency>
+        <groupId>org.eclipse.lyo.clients</groupId>
+        <artifactId>oslc4j-client</artifactId>
+        <version>${eclipse.lyo.version}</version>
+       </dependency>
+
+      <!-- dependency>
+        <groupId>org.eclipse.lyo.oslc4j.core</groupId>
+        <artifactId>oslc4j-core</artifactId>
+        <version>${eclipse.lyo.version}</version>
+      </dependency -->
+
+<dependency>
+    <groupId>org.glassfish.jersey.core</groupId>
+    <artifactId>jersey-client</artifactId>
+    <version>2.29.1</version>
+</dependency>
+
+<dependency>
+    <groupId>org.glassfish.jersey.inject</groupId>
+    <artifactId>jersey-hk2</artifactId>
+    <version>2.29.1</version>
+</dependency>
+
+
+<!-- dependency>
+    <groupId>org.glassfish.jersey.connectors</groupId>
+    <artifactId>jersey-grizzly-connector</artifactId>
+    <version>2.29.1</version>
+</dependency -->
+
+<dependency>
+    <groupId>org.glassfish.jersey.connectors</groupId>
+    <artifactId>jersey-apache-connector</artifactId>
+    <version>2.29.1</version>
+</dependency>
+
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-simple</artifactId>
+    <version>1.7.28</version>
+    <!-- scope>test</scope-->
+</dependency>
+
+<!-- dependency>
+    <groupId>org.glassfish.jersey.connectors</groupId>
+    <artifactId>jersey-jetty-connector</artifactId>
+    <version>2.29.1</version>
+</dependency -->
+
+
+    </dependencies>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>3.0.0-M3</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9</version>
+        <configuration>
+          <aggregate>true</aggregate>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+
+</project>
